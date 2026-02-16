@@ -131,4 +131,71 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 2000);
         });
     }
+
+    // --- Tambahan Inisialisasi Modal ---
+    const loginModal = document.getElementById('loginModal');
+    const loginCard = document.getElementById('loginCard');
+    const closeLogin = document.getElementById('closeLogin');
+    const loginForm = document.getElementById('loginForm');
+    
+    // Selector untuk semua link yang mengarah ke #login
+    const loginLinks = document.querySelectorAll('a[href="#login"]');
+
+    // Fungsi Buka Modal
+    const openLogin = (e) => {
+        e.preventDefault();
+        
+        // Jika sedang di mobile, tutup dulu mobile menu-nya
+        if (mobileMenu.classList.contains('translate-x-0')) {
+            toggleMenu(); 
+        }
+
+        loginModal.classList.remove('hidden');
+        // Delay sedikit agar animasi transition scale & opacity berjalan
+        setTimeout(() => {
+            loginCard.classList.remove('scale-95', 'opacity-0');
+            loginCard.classList.add('scale-100', 'opacity-100');
+        }, 10);
+        document.body.style.overflow = 'hidden'; // Kunci scroll
+    };
+
+    // Fungsi Tutup Modal
+    const closeLoginModal = () => {
+        loginCard.classList.remove('scale-100', 'opacity-100');
+        loginCard.classList.add('scale-95', 'opacity-0');
+        
+        setTimeout(() => {
+            loginModal.classList.add('hidden');
+            // Hanya aktifkan scroll jika mobile menu juga tertutup
+            if (mobileMenu.classList.contains('translate-x-full')) {
+                document.body.style.overflow = 'auto';
+            }
+        }, 300);
+    };
+
+    // Event Listeners
+    loginLinks.forEach(link => link.addEventListener('click', openLogin));
+    closeLogin.addEventListener('click', closeLoginModal);
+    
+    // Tutup jika klik di luar area card (di backdrop)
+    loginModal.addEventListener('click', (e) => {
+        if (e.target === loginModal.firstElementChild || e.target === loginModal) {
+            closeLoginModal();
+        }
+    });
+
+    // Handle Submit Login (Simulasi)
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = loginForm.querySelector('button');
+            btn.innerText = 'Memverifikasi...';
+            
+            setTimeout(() => {
+                alert('Login Berhasil! Selamat datang di DivTravel.');
+                closeLoginModal();
+                btn.innerText = 'Masuk Sekarang';
+            }, 1500);
+        });
+    }
 });

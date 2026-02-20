@@ -32,13 +32,13 @@ nav.scrolled {
     background-color: rgba(255, 255, 255, 0.95) !important;
     backdrop-filter: blur(12px);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    color: #064e3b !important;
+    color: #06374e !important;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
 }
 
 nav.scrolled #menu-btn {
-    color: #064e3b;
+    color: #06374e;
 }
 
 /* Logic Mobile Menu Overlay */
@@ -57,7 +57,40 @@ nav.scrolled #menu-btn {
 }
 
 .mobile-link:hover {
-    color: #34d399;
+    color: #348bd3;
+}
+
+/* State Awal: Terpisah jauh */
+.side-left-hidden {
+    transform: translateX(-150px) rotate(-3deg); /* Tambah jarak sedikit */
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.side-right-hidden {
+    transform: translateX(150px) rotate(3deg); /* Tambah jarak sedikit */
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.side-shown {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+}
+
+.form-element {
+    transform: translateY(30px); 
+    opacity: 0;
+    visibility: hidden; 
+    transition: opacity 0.6s ease-out, 
+                transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
+    will-change: transform, opacity; 
+}
+
+.form-element-shown {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
 }
 
 /* --- 3. Animations & Keyframes --- */
@@ -128,10 +161,9 @@ nav.scrolled #menu-btn {
     filter: brightness(0.8) contrast(1.1);
 }
 
-/* Membuat list item muncul satu per satu saat di hover */
 .group:hover ul li {
     opacity: 1;
-    color: #064e3b; /* Emerald 950 */
+    color: #062e4e;
 }
 
 /* Animasi khusus pada button */
@@ -146,22 +178,19 @@ nav.scrolled #menu-btn {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Perbaikan Input Focus */
 input:focus, 
 select:focus, 
 textarea:focus {
-    border-color: #059669; /* emerald-600 */
+    border-color: #054996;
     box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.2);
 }
 
 /* --- 5. Mobile Responsive Fixes --- */
 @media (max-width: 768px) {
-    /* Navbar di mobile default (sebelum scroll) */
     #navbar {
         background-color: transparent; 
     }
     
-    /* Search bar di mobile agar tidak terlalu rapat ke pinggir */
     #home {
         display: flex;
         align-items: center; 
@@ -176,18 +205,15 @@ textarea:focus {
         letter-spacing: -0.02em;
     }
 
-    /* Memastikan Search Bar di mobile memiliki margin bawah agar tidak mepet layar */
     #home .absolute.bottom-8 {
         bottom: 1.5rem;
     }
 
-    /* Membuat form di mobile lebih compact */
     #home .max-w-5xl {
         padding: 1.25rem;
         border-radius: 1.5rem;
     }
 
-    /* Search bar di mobile agar tidak terlalu menumpuk */
     .grid-cols-1 gap-4 {
         gap: 0.75rem;
     }
@@ -197,7 +223,6 @@ textarea:focus {
         transition: transform 0.3s ease;
     }
 
-    /* Padding section lebih kecil di mobile */
     section {
         padding-left: 1.5rem;
         padding-right: 1.5rem;

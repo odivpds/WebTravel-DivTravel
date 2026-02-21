@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // video auto play 
     const videoList = [
-        "assets/terasering.mp4", 
+        "assets/terasering2.mp4", 
         "assets/DroneSalib.mp4", 
         "assets/china.mp4", 
         "assets/estetikpantai.mp4", 

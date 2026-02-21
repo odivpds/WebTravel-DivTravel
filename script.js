@@ -157,12 +157,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // video auto play 
     const videoList = [
-        "assets/terasering2.mp4", 
-        "assets/DroneSalib.mp4", 
-        "assets/china.mp4", 
-        "assets/estetikpantai.mp4", 
-        "assets/pura.mp4",
-        "assets/Teluk.mp4"
+        "assets/terasering.webm", 
+        "assets/DroneSalib.webm", 
+        "assets/china.webm", 
+        "assets/estetikpantai.webm", 
+        "assets/pura.webm"
     ];
 
     const videoElement = document.getElementById('bgVideo');
